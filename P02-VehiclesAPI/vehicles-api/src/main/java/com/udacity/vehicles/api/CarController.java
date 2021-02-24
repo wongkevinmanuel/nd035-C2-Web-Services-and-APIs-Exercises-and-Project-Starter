@@ -63,6 +63,7 @@ class CarController {
          * TODO: Use the `assembler` on that car and return the resulting output.
          *   Update the first line as part of the above implementing.
          */
+        carService.findById(id);
         return assembler.toResource(new Car());
     }
 
