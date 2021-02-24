@@ -1,7 +1,6 @@
 # Vehicles API
 
-A REST API to maintain vehicle data and to provide a complete
-view of vehicle details including price and address.
+Una API REST para mantener los datos del vehículo y proporcionar una vista completa de los detalles del vehículo, incluido el precio y la dirección.
 
 ## Features
 
@@ -15,17 +14,9 @@ view of vehicle details including price and address.
 
 ## Instructions
 
-#### TODOs
-
-- Implement the `TODOs` within the `CarService.java` and `CarController.java`  files
-- Add additional tests to the `CarControllerTest.java` file based on the `TODOs`
-- Implement API documentation using Swagger
-
 #### Run the Code
 
-To properly run this application you need to start the Orders API and
-the Service API first.
-
+Para ejecutar correctamente esta aplicación, primero debe iniciar la API de pedidos y la API de servicio.
 
 ```
 $ mvn clean package
@@ -73,9 +64,7 @@ Swagger UI: http://localhost:8080/swagger-ui.html
 
 `GET` `/cars/{id}`
 
-This feature retrieves the Vehicle data from the database
-and access the Pricing Service and Boogle Maps to enrich 
-the Vehicle information to be presented
+Esta función recupera los datos del vehículo de la base de datos y accede al servicio de precios y a Boogle Maps para enriquecer la información del vehículo que se presentará.
 
 ### Update a Vehicle
 
