@@ -1,7 +1,7 @@
 package com.udacity.boogle.maps;
 
 /**
- * Declares a class to store an address, city, state and zip code.
+ * Declara una clase para almacenar una dirección, ciudad, estado y código postal.
  */
 public class Address {
 

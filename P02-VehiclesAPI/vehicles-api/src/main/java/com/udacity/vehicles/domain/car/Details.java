@@ -9,6 +9,9 @@ import javax.validation.constraints.NotNull;
 /**
  * Declares the additional detail variables for each Car object,
  * along with related methods for access and setting.
+ * Declara las variables de detalle adicionales para cada
+ * objeto Car, junto con los métodos relacionados para el
+ * acceso y la configuración.
  */
 @Embeddable
 public class Details {

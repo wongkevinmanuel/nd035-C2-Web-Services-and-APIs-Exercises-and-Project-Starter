@@ -19,6 +19,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
  * Declares the Car class, related variables and methods.
+ * Declara la clase Car, variables y métodos relacionados.
  */
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -46,6 +47,11 @@ public class Car {
     @Embedded
     private Location location = new Location(0d, 0d);
 
+    /*
+    * lo que significa que se debe llamar
+    * al Servicio de fijación de precios cada
+    * vez que se desea un precio.
+     * */
     @Transient
     private String price;
 

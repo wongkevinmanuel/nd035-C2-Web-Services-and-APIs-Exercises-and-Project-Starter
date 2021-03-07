@@ -13,6 +13,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 /**
  * Implements the Error controller related to any errors handled by the Vehicles API
+ * Implementa el controlador de errores relacionado con cualquier error manejado
+ * por la API de vehículos
  */
 @ControllerAdvice
 public class ErrorController extends ResponseEntityExceptionHandler {
@@ -24,6 +26,7 @@ public class ErrorController extends ResponseEntityExceptionHandler {
             MethodArgumentNotValidException ex,
             HttpHeaders headers, HttpStatus status,
             WebRequest request) {
+
         List<String> errors = ex.getBindingResult()
                 .getFieldErrors()
                 .stream()

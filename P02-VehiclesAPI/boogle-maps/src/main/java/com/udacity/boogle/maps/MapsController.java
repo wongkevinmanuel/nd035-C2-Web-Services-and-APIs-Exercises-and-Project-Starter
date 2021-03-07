@@ -11,6 +11,7 @@ public class MapsController {
 
     @GetMapping
     public Address get(@RequestParam Double lat, @RequestParam Double lon) {
+        //Mock of WebService
         //Retorna una dirreccion aleatoria.
         return MockAddressRepository.getRandom();
     }

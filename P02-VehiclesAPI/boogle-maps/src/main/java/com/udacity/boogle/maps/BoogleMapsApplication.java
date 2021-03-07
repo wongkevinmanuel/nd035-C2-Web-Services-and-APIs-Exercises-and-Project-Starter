@@ -8,7 +8,6 @@ public class BoogleMapsApplication {
 
 	public static void main(String[] args) {
 		//Lanza aplicacion spring boot
-
 		SpringApplication.run(BoogleMapsApplication.class, args);
 	}
 
