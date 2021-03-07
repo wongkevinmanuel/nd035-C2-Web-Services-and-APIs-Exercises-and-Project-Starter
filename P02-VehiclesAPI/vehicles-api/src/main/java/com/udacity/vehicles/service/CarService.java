@@ -52,6 +52,7 @@ public class CarService {
      *          una lista de todos los vehículos en CarRepository
      */
     public List<Car> list() {
+
         return repository.findAll();
     }
 
@@ -60,9 +61,7 @@ public class CarService {
         Location localizacion = new Location();
         try{
             localizacion = clienteMapa.getAddress(localizacionLatLong);
-        }catch (Exception ex){
-
-        }
+        }catch (Exception ex){   }
         car.setLocation(localizacion);
     }
 
@@ -79,6 +78,7 @@ public class CarService {
 
         car.setPrice(precio);
     }
+
     /**
      * Gets car information by ID (or throws exception if non-existent)
      * Obtiene la información del automóvil por ID (o lanza una excepción si no existe)
@@ -99,9 +99,9 @@ public class CarService {
         car = new Car();
         Optional optionalCarro = repository.findById(id);
 
-        if(optionalCarro.isEmpty()){
+        if(optionalCarro.isEmpty())
             throw new CarNotFoundException();
-        }
+
         car = (Car) optionalCarro.get();
         setPrecio(id);
         setLocalizacion(car.getLocation());
@@ -169,8 +169,14 @@ public class CarService {
          *  If it does not exist, throw a CarNotFoundException
          *  Si no existe, lanza una CarNotFoundException
          */
+        Car carro = new Car();
+        Optional optionalCarro = repository.findById(id);
 
+        if (optionalCarro.isEmpty())
+            throw new CarNotFoundException();
 
+        carro = (Car) optionalCarro.get();
+        repository.delete(car);
         /**
          * TODO: Delete the car from the repository.
          *      Elimina el carro del repositorui
