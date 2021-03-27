@@ -59,8 +59,9 @@ public class PriceClient {
             return String.format("%s %s", price.getCurrency(), price.getPrice());
 
         } catch (Exception e) {
-            log.error("Unexpected error retrieving price for vehicle {}", vehicleId, e);
+            String error = "Unexpected error retrieving price for vehicle {}";
+            log.error(error, vehicleId, e);
+            return error+vehicleId;
         }
-        return "(consult price)";
     }
 }

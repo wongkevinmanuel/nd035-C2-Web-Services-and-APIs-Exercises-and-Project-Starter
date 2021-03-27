@@ -12,8 +12,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 
+import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,9 +26,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.ApiResponse;
 /**
  * Implements a REST-based controller for the Vehicles API.
  */
+@ApiResponses(value={
+        @ApiResponse(code = 400, message = "Bad Request response, server cannot or will not process the request due to something that is perceived to be a client error.")
+        ,@ApiResponse(code =401, message = "Unauthorized client, the request has not been applied because it lacks valid authentication credentials for the target resource.")
+        ,@ApiResponse(code=500, message = "Internal Server Error server error response, The server encountered an unexpected condition that prevented it from fulfilling the request.")
+})
 @RestController
 @RequestMapping("/cars")
 class CarController {
@@ -39,17 +48,25 @@ class CarController {
         this.assembler = assembler;
     }
 
+    /*public class Resource<T>
+            extends ResourceSupport
+    Un recurso simple que envuelve un objeto de dominio y le agrega enlaces.
+    */
+
+
     /**
      * Creates a list to store any vehicles.
      * Crea una lista para almacenar cualquier vehículo.
      * @return list of vehicles
      */
-    @GetMapping
-    Resources<Resource<Car>> list() {
-        List<Resource<Car>> resources = carService.list().stream().map(assembler::toResource)
-                .collect(Collectors.toList());
-        return new Resources<>(resources,
-                linkTo(methodOn(CarController.class).list()).withSelfRel());
+    @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    Resources< Resource<Car> > list() {
+        List<Resource<Car>> resources = carService.list()
+                                                .stream().map(assembler::toResource)
+                                                        .collect(Collectors.toList());
+        Link enlace = linkTo(methodOn(CarController.class).list()).withSelfRel();
+        //Link enlace = linkTo("Kevin_es_vacano").withSelfRel();
+        return new Resources<>(resources, enlace);
     }
 
     /**
@@ -67,8 +84,8 @@ class CarController {
          *   Update the first line as part of the above implementing.
          *   Actualice la primera línea como parte de la implementación anterior.
          */
-        carService.findById(id);
-        return assembler.toResource(new Car());
+        Car carro = carService.findById(id);
+        return assembler.toResource(carro);
     }
 
     /**
@@ -76,6 +93,7 @@ class CarController {
      * Publica información para crear un nuevo vehículo en el sistema.
      * @param car A new vehicle to add to the system.
      * @return response that the new vehicle was added to the system
+     *         Respuesta de que el nuevo vehículo se agregó al sistema.
      * @throws URISyntaxException if the request contains invalid fields or syntax
      *          URISyntaxException si la solicitud contiene campos o sintaxis no válidos
      */
@@ -87,11 +105,11 @@ class CarController {
          * TODO: Use the `assembler` on that saved car and return as part of the response.
          * Use el "ensamblador" en ese auto guardado y devuélvalo como parte de la respuesta.
          *   Update the first line as part of the above implementing.
-         *
          */
-        Resource<Car> resource = assembler.toResource(new Car());
-        return ResponseEntity.created(new URI(resource.getId().expand().getHref()))
-                .body(resource);
+        Car autoGuardado = carService.save(car);
+        Resource<Car> resource = assembler.toResource(autoGuardado);
+        URI uri = new URI(resource.getId().expand().getHref());
+        return ResponseEntity.created(uri).body(resource);
     }
 
     /**
@@ -113,7 +131,9 @@ class CarController {
          * Use el `ensamblador` en ese auto actualizado y devuélvalo como parte de la respuesta.
          *   Update the first line as part of the above implementing.
          */
-        Resource<Car> resource = assembler.toResource(new Car());
+        car.setId(id);
+        Car autoActualizado = carService.save(car);
+        Resource<Car> resource = assembler.toResource(autoActualizado);
         return ResponseEntity.ok(resource);
     }
 
@@ -130,6 +150,7 @@ class CarController {
          * TODO: Use the Car Service to delete the requested vehicle.
          * Utilice el servicio de automóvil para eliminar el vehículo solicitado.
          */
+        carService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

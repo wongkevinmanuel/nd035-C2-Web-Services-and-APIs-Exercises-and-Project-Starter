@@ -26,6 +26,7 @@ public class PricingController {
      * @return price of the vehicle, or error that it was not found.
      *          precio del vehículo, o error que no se encontró.
      */
+    /*
     @GetMapping
     public Price get(@RequestParam Long vehicleId) {
         try {
@@ -34,5 +35,6 @@ public class PricingController {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Price Not Found", ex);
         }
-    }
+    }*/
+
 }

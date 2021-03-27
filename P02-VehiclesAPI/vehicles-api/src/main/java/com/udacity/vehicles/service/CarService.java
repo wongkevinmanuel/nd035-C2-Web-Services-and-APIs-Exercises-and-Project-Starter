@@ -67,14 +67,14 @@ public class CarService {
 
     private void setPrecio(Long id){
         String precio= "";
-        try{
+        //try{
             precio = clientePrecio.getPrice(id);
-        }catch (Exception ex){
-            precio = "Error unexpected.";
-        }
+        //}catch (Exception ex){
+        //    precio = "Error unexpected.";
+       //}
 
-        if(precio.isEmpty())
-            precio = "Error unexpected.";
+        //if(precio.isEmpty())
+        //    precio = "Error unexpected.";
 
         car.setPrice(precio);
     }

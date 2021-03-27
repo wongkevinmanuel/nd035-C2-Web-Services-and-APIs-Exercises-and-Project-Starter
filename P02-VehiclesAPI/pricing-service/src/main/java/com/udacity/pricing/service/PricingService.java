@@ -46,7 +46,6 @@ public class PricingService {
      *                                   no se encontró
      */
     public static Price getPrice(Long vehicleId) throws PriceException {
-
         if (!PRICES.containsKey(vehicleId)) {
             throw new PriceException("Cannot find price for Vehicle " + vehicleId);
         }
@@ -61,8 +60,10 @@ public class PricingService {
      *          precio aleatorio de un vehiculo
      */
     private static BigDecimal randomPrice() {
-        BigDecimal granDecimal = new BigDecimal(ThreadLocalRandom.current().nextDouble(1, 5))
-                .multiply(new BigDecimal(5000d)).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal granDecimal =
+                new BigDecimal(ThreadLocalRandom.current().nextDouble(1, 5))
+                            .multiply(new BigDecimal(5000d))
+                            .setScale(2, RoundingMode.HALF_UP);
         return granDecimal;
     }
 }
