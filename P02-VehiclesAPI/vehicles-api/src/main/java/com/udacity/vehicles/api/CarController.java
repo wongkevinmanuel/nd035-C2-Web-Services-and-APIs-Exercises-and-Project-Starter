@@ -31,12 +31,13 @@ import io.swagger.annotations.ApiResponse;
 /**
  * Implements a REST-based controller for the Vehicles API.
  */
+
+@RestController
 @ApiResponses(value={
         @ApiResponse(code = 400, message = "Bad Request response, server cannot or will not process the request due to something that is perceived to be a client error.")
         ,@ApiResponse(code =401, message = "Unauthorized client, the request has not been applied because it lacks valid authentication credentials for the target resource.")
         ,@ApiResponse(code=500, message = "Internal Server Error server error response, The server encountered an unexpected condition that prevented it from fulfilling the request.")
 })
-@RestController
 @RequestMapping("/cars")
 class CarController {
 
