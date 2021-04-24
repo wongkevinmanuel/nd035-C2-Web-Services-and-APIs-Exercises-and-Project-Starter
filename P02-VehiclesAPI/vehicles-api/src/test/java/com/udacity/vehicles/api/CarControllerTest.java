@@ -1,16 +1,11 @@
 package com.udacity.vehicles.api;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.udacity.vehicles.client.maps.MapsClient;
@@ -92,8 +87,7 @@ public class CarControllerTest {
         Car car = getCar();
         //simula una solocitud Http
         mvc.perform(
-                post(new URI("/cars"))
-                        .content(json.write(car).getJson())
+                post(new URI("/cars")).content(json.write(car).getJson())
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isCreated());
@@ -126,8 +120,8 @@ public class CarControllerTest {
          */
         Car auto = getCar();
         URI uri= new URI("/cars");
-        mvc.perform(get(uri)
-                        .content(json.write(auto).getJson())
+        mvc.perform(
+                get(uri).content(json.write(auto).getJson())
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk());
@@ -138,7 +132,7 @@ public class CarControllerTest {
      * @throws Exception if the read operation for a single car fails
      *
      * Prueba la operación de lectura para un solo automóvil por ID.
-     * @throws Excepción si falla la operación de lectura para un solo automóvil
+     * Excepción si falla la operación de lectura para un solo automóvil
      */
     @Test
     public void findCar() throws Exception {
@@ -152,8 +146,8 @@ public class CarControllerTest {
          */
         Car auto = getCar();
         URI uri= new URI("/cars/1");
-        mvc.perform(get(uri)
-                        .content(json.write(auto).getJson())
+        mvc.perform(
+                    get(uri).content(json.write(auto).getJson())
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andExpect(status().isOk());
@@ -164,7 +158,7 @@ public class CarControllerTest {
      * @throws Exception if the delete operation of a vehicle fails
      *
      * Prueba la eliminación de un solo automóvil por ID.
-     * @throws Excepción si falla la operación de eliminación de un vehículo
+     * Excepción si falla la operación de eliminación de un vehículo
      */
     @Test
     public void deleteCar() throws Exception {
@@ -188,6 +182,16 @@ public class CarControllerTest {
         ).andExpect(status().isOk());
     }
 
+    @Test
+    public void actualizarAuto() throws Exception{
+        Car auto = getCar();
+        mvc.perform(
+            put(new URI("/cars/1"))
+                    .content(json.write(auto).getJson())
+                    .contentType(MediaType.APPLICATION_JSON_UTF8)
+                    .accept(MediaType.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
+    }
 
     /**
      * Creates an example Car object for use in testing.

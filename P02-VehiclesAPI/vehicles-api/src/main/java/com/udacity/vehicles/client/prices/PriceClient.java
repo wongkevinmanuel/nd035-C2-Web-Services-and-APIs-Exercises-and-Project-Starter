@@ -49,15 +49,14 @@ public class PriceClient {
         try {
             Price price = client
                     .get()
-                    .uri(uriBuilder -> uriBuilder
-                            .path("services/price/")
+                    .uri(uriBuilder -> uriBuilder.path("/prices")
+                            //.path("services/price/")
                             .queryParam("vehicleId", vehicleId)
                             .build()
                     )
                     .retrieve().bodyToMono(Price.class).block();
-
+            String  precio =  "MONEDA: " + price.getCurrency() + " PRECIO: " + price.getPrice();
             return String.format("%s %s", price.getCurrency(), price.getPrice());
-
         } catch (Exception e) {
             String error = "Unexpected error retrieving price for vehicle {}";
             log.error(error, vehicleId, e);

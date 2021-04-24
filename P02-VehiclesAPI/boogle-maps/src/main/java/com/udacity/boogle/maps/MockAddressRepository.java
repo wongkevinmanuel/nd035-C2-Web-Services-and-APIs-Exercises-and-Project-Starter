@@ -27,26 +27,12 @@ class MockAddressRepository {
         String streetAndNumber = addressParts[0];
         String cityStateAndZip = addressParts[1];
 
-        //trim() Elimina espacios inciales y finales de una cadena.
-        //split() Rompe cadena dada alrededor de las coincidencias de la exopresion regular dada.
         String[] cityStateAndZipParts = cityStateAndZip.trim().split(" ");
 
-        //LinkedList : contiene muchos objetos del mismo tipo
-        //La lista tiene un enlace al primer contenedor
-        // y cada contenedor tiene un enlace al siguiente contenedor de la lista.
-        //
-        // stream: Es auto iterable,
-        // habilita la collection para poder trabajar con lambdas
-        //
-        // map : Se utiliza para recibir una funcion q trabaja sobre el stream
-        // String::trim Elimina espacios inciales y finales de una cadena.
-        // LinkedList::new creo q es para instanciar un nuevo LinkedList
         LinkedList<String> list =
                 Arrays.stream(cityStateAndZipParts).map(String::trim)
                         .collect(Collectors.toCollection(LinkedList::new));
 
-        //pollLast() Recupera y elimina el último elemento de esta lista
-        // o devuelve nulo si esta lista está vacía.
         String zip = list.pollLast();
         String state = list.pollLast();
         String city = String.join(" ", list);

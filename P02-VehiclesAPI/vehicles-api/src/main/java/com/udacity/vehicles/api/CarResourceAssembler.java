@@ -18,10 +18,6 @@ public class CarResourceAssembler implements ResourceAssembler<Car, Resource<Car
      * HATEOAS
      *  El problema central que intenta abordar es la creación de enlaces y el ensamblaje de representación.
      */
-
-    /*
-    *
-    * */
     @Override
     public Resource<Car> toResource(Car car) {
         //Crear enlaces apuntando a clases de controlador
