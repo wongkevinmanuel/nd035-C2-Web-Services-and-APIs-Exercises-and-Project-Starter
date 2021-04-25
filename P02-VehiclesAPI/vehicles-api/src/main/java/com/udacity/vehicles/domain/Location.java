@@ -9,10 +9,6 @@ import javax.validation.constraints.NotNull;
  * Latitude and longitude must be provided, while other
  * location information must be gathered each time from
  * the maps API.
- * Almacena información sobre una ubicación determinada.
- * Se deben proporcionar la latitud y la longitud,
- * mientras que se debe recopilar otra información
- * de ubicación cada vez desde la API de mapas.
  */
 @Embeddable
 public class Location {

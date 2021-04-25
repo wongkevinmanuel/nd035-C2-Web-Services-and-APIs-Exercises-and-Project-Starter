@@ -63,7 +63,6 @@ public class CarControllerTest {
 
     /**
      * Creates pre-requisites for testing, such as an example car.
-     * Crea requisitos previos para las pruebas, como un coche de ejemplo.
      */
     @Before
     public void setup() {
@@ -77,10 +76,6 @@ public class CarControllerTest {
     /**
      * Tests for successful creation of new car in the system
      * @throws Exception when car creation fails in the system
-     *
-     * Pruebas para la creación exitosa de un nuevo automóvil
-     * en el sistema @throws Excepción cuando falla la creación
-     * de un automóvil en el sistema
      */
     @Test
     public void createCar() throws Exception {
@@ -102,10 +97,6 @@ public class CarControllerTest {
     /**
      * Tests if the read operation appropriately returns a list of vehicles.
      * @throws Exception if the read operation of the vehicle list fails
-     *
-     * Prueba si la operación de lectura devuelve correctamente una lista
-     * de vehículos. @throws Excepción si falla la operación de lectura
-     * de la lista de vehículos
      */
     @Test
     public void listCars() throws Exception {
@@ -113,10 +104,6 @@ public class CarControllerTest {
          * TODO: Add a test to check that the `get` method works by calling
          *   the whole list of vehicles. This should utilize the car from `getCar()`
          *   below (the vehicle will be the first in the list).
-         *
-         *   TODO: agregue una prueba para verificar que el método `get` funcione
-         *   llamando a la lista completa de vehículos. Esto debería utilizar el coche
-         *   de `getCar ()` a continuación (el vehículo será el primero en la lista).
          */
         Car auto = getCar();
         URI uri= new URI("/cars");
@@ -130,19 +117,12 @@ public class CarControllerTest {
     /**
      * Tests the read operation for a single car by ID.
      * @throws Exception if the read operation for a single car fails
-     *
-     * Prueba la operación de lectura para un solo automóvil por ID.
-     * Excepción si falla la operación de lectura para un solo automóvil
      */
     @Test
     public void findCar() throws Exception {
         /**
          * TODO: Add a test to check that the `get` method works by calling
          *   a vehicle by ID. This should utilize the car from `getCar()` below.
-         *
-         *   TODO: Agregue una prueba para verificar que el método `get` funcione
-         *   llamando a un vehículo por ID. Esto debería utilizar el coche de
-         *   `getCar ()` a continuación.
          */
         Car auto = getCar();
         URI uri= new URI("/cars/1");
@@ -156,9 +136,6 @@ public class CarControllerTest {
     /**
      * Tests the deletion of a single car by ID.
      * @throws Exception if the delete operation of a vehicle fails
-     *
-     * Prueba la eliminación de un solo automóvil por ID.
-     * Excepción si falla la operación de eliminación de un vehículo
      */
     @Test
     public void deleteCar() throws Exception {
@@ -166,11 +143,6 @@ public class CarControllerTest {
          * TODO: Add a test to check whether a vehicle is appropriately deleted
          *   when the `delete` method is called from the Car Controller. This
          *   should utilize the car from `getCar()` below.
-         *
-         *   TODO: agregue una prueba para verificar si un vehículo se elimina
-         *   correctamente cuando se llama al método `delete` desde el controlador
-         *   del automóvil.
-         * Esto debería utilizar el coche de `getCar ()` a continuación.
          */
         URI uriDelete = new URI("/cars/1");
         URI uriGet = new URI("/cars");
@@ -196,9 +168,6 @@ public class CarControllerTest {
     /**
      * Creates an example Car object for use in testing.
      * @return an example Car object
-     *
-     * Crea un objeto Car de ejemplo para usarlo en pruebas.
-     *       * @return un objeto Car de ejemplo
      */
     private Car getCar() {
         Car car = new Car();

@@ -19,7 +19,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
  * Declares the Car class, related variables and methods.
- * Declara la clase Car, variables y métodos relacionados.
  */
 @Entity
 @EntityListeners(AuditingEntityListener.class)
